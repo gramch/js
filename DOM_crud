@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>borderTest</title>
+		<script type="text/javascript">
+		function delA(){
+			var table = this.parentNode.parentNode;
+			var cof = confirm("你确定吗？");
+			if(cof == true){
+			table.parentNode.removeChild(table);
+			}
+			return false;
+		}
+			window.onload = function(){
+				//1、点击超链接删除操作
+				var c = document.getElementsByTagName("a");
+				for (var i = 0; i < c.length; i++) {
+					c[i].onclick = delA;
+					
+				}
+				var submit = document.getElementById("sub");
+				submit.onclick = function(){
+					var name = document.getElementsByName("add");
+					// alert(name[0].value);
+					var tr = document.createElement("tr");
+					var table = document.getElementById("table");
+					var tbody = table.getElementsByTagName("tbody")[0];	
+					for (var i = 0; i < name.length+1; i++) {
+									
+						var td = document.createElement("td");
+						if(i<name.length){
+						var value = name[i].value;	
+						td.innerHTML += value;
+						
+						}else{
+							var a = document.createElement("a");
+							a.onclick = delA;
+							a.href = "";
+							a.innerHTML += "Delete";
+							td.appendChild(a);
+						}
+						tr.appendChild(td);
+					
+						// alert(value);
+				}
+				var conf = confirm("sure?");
+				if(conf == true){
+				// tr.appendChild()
+				tbody.appendChild(tr);
+				}
+				};
+			}
+		</script>
+	</head>
+	<body>
+		<div id="d1">
+			<table id="table" border="1" cellspacing="" cellpadding="">
+				<tr id="t1">
+					<th>Name</th>
+					<th>Email</th>
+					<th>Salary</th>
+					<th></th>
+				</tr>
+				<tr id="t2">
+					<td>Tom</td>
+					<td>Tom@tom.com</td>
+					<td>5000</td>
+					<td><a href="">Delete</a></td>
+				</tr>
+				<tr id="t3">
+					<td>Jerry</td>
+					<td>jerry@sohu.com</td>
+					<td>8000</td>
+					<td><a href="">Delete</a></td>
+				</tr>
+				<tr id="t4">
+					<td>Bob</td>
+					<td>bob@tom.com</td>
+					<td>10000</td>
+					<td><a href="">Delete</a></td>
+				</tr>
+			</table>
+			<h1></h1>
+			<h2>添加新员工</h2>
+			<span>name: </span><input type="text" name="add" id="name" value=""/>
+			<h1></h1>
+			<span>email: </span><input type="text" name="add" id="email" value=""/>
+			<h1></h1>
+			<span>salary: </span><input type="text" name="add" id="salary" value="" />
+			<h1></h1>
+			<button id="sub" type="button">Submit</button>
+		</div>
+	</body>
+</html>
